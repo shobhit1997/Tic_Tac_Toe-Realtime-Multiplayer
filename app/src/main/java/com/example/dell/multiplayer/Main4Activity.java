@@ -39,14 +39,15 @@ public class Main4Activity extends AppCompatActivity {
                 // Get Post object and use the values to update the UI
 
                 for (DataSnapshot messageSnapshot: dataSnapshot.getChildren()) {
-                     name = String.valueOf( messageSnapshot.child("author").getValue());
+
                     int joined = Integer.parseInt(String.valueOf(messageSnapshot.child("joined").getValue()));
-                    Log.i("Author :",name);
+
                     Log.i("Joined :",joined+"");
                     if(joined==1&&gameId.equals(messageSnapshot.getKey())) {
 
                         joining.setText("Joined");
-
+                        name = String.valueOf( messageSnapshot.child("author").getValue());
+                        Log.i("Author 1:",name);
                         start.setEnabled(true);
 
 

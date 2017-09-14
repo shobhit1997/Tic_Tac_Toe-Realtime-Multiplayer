@@ -65,9 +65,9 @@ public class TicTacToe extends AppCompatActivity {
                 // Get Post object and use the values to update the UI
 
                 for (DataSnapshot messageSnapshot: dataSnapshot.getChildren()) {
-                    String name = String.valueOf( messageSnapshot.child("author").getValue());
+
                     int joined = Integer.parseInt(String.valueOf(messageSnapshot.child("joined").getValue()));
-                    Log.i("Author :",name);
+
                     Log.i("Joined :",joined+"");
                     if(joined==1&&gameId.equals(messageSnapshot.getKey())) {
                         int winner = Integer.parseInt(String.valueOf(messageSnapshot.child("winner").getValue()));
@@ -209,8 +209,8 @@ public class TicTacToe extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        /*Intent i=new Intent(this,Main2Activity.class);
+        Intent i=new Intent(this,Main2Activity.class);
         startActivity(i);
-        finish();*/
+        finish();
     }
 }

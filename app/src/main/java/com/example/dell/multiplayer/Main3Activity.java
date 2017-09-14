@@ -27,7 +27,7 @@ public class Main3Activity extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     String joiner;
     String turn;
-    ValueEventListener postListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +40,37 @@ public class Main3Activity extends AppCompatActivity {
         games=new ArrayList<>();
         gameId=new ArrayList<>();
         adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,games);
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the UI
 
+                gameId.clear();
+                games.clear();
+                for (DataSnapshot messageSnapshot: dataSnapshot.getChildren()) {
+
+                    int joined = Integer.parseInt(String.valueOf(messageSnapshot.child("joined").getValue()));
+
+                    Log.i("Joined :",joined+"");
+                    if(joined==0) {
+                        String name = String.valueOf( messageSnapshot.child("author").getValue());
+                        gameId.add(messageSnapshot.getKey());
+                        games.add(name);
+                        turn=String.valueOf( messageSnapshot.child("turn").getValue());
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+                // ...
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+
+                // ...
+            }
+        };
+        activeGames.addValueEventListener(postListener);
 
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -61,38 +91,5 @@ public class Main3Activity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        postListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
 
-                gameId.clear();
-                games.clear();
-                for (DataSnapshot messageSnapshot: dataSnapshot.getChildren()) {
-                    String name = String.valueOf( messageSnapshot.child("author").getValue());
-                    int joined = Integer.parseInt(String.valueOf(messageSnapshot.child("joined").getValue()));
-                    Log.i("Author :",name);
-                    Log.i("Joined :",joined+"");
-                    if(joined==0) {
-                        gameId.add(messageSnapshot.getKey());
-                        games.add(name);
-                        turn=String.valueOf( messageSnapshot.child("turn").getValue());
-                        adapter.notifyDataSetChanged();
-                    }
-                }
-                // ...
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-
-                // ...
-            }
-        };
-        activeGames.addValueEventListener(postListener);
-    }
 }
