@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "775584680001",
+    "firebase_url": "https://multiplayer-24235.firebaseio.com",
+    "project_id": "multiplayer-24235",
+    "storage_bucket": "multiplayer-24235.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:775584680001:android:95c6ea356694b614",
+        "android_client_info": {
+          "package_name": "com.example.dell.multiplayer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "775584680001-4p16htoiudi8kgc8ocjnnl2ap79kv14j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dell.multiplayer",
+            "certificate_hash": "cb7818da76a7f13658fba971657b4996734304a1"
+          }
+        },
+        {
+          "client_id": "775584680001-2vpjcu18v3scitbn58j7ofnc68gsj84n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjTwoVTMEjOTXl6S1QSs12f7AsnhksdVo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "775584680001-2vpjcu18v3scitbn58j7ofnc68gsj84n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
