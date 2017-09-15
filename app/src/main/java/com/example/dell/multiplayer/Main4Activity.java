@@ -41,15 +41,22 @@ public class Main4Activity extends AppCompatActivity {
                 for (DataSnapshot messageSnapshot: dataSnapshot.getChildren()) {
 
                     int joined = Integer.parseInt(String.valueOf(messageSnapshot.child("joined").getValue()));
+                    String joiner = String.valueOf( messageSnapshot.child("player2").getValue());
 
                     Log.i("Joined :",joined+"");
-                    if(joined==1&&gameId.equals(messageSnapshot.getKey())) {
+                    if(joined==1&&gameId.equals(messageSnapshot.getKey())&&joiner.length()!=0) {
 
                         joining.setText("Joined");
                         name = String.valueOf( messageSnapshot.child("author").getValue());
                         Log.i("Author 1:",name);
-                        start.setEnabled(true);
-
+                        Intent it=new Intent(getApplicationContext(),TicTacToe.class);
+                        Toast.makeText(getApplicationContext(),"Your Turn",Toast.LENGTH_SHORT).show();
+                        it.putExtra("player",name);
+                        it.putExtra("symbol",1);
+                        it.putExtra("gameId",gameId);
+                        gameId="";
+                        startActivity(it);
+                        finish();
 
 
 
@@ -72,14 +79,14 @@ public class Main4Activity extends AppCompatActivity {
     public void begin(View view)
     {
 
-        Intent it=new Intent(getApplicationContext(),TicTacToe.class);
-        Toast.makeText(getApplicationContext(),"Your Turn",Toast.LENGTH_SHORT).show();
-        it.putExtra("player",name);
-        it.putExtra("symbol",1);
-        it.putExtra("gameId",gameId);
-        gameId="";
-        startActivity(it);
 
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        activeGames.child(gameId).child("joined").setValue(1);
     }
 }

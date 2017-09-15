@@ -50,9 +50,9 @@ public class Main3Activity extends AppCompatActivity {
                 for (DataSnapshot messageSnapshot: dataSnapshot.getChildren()) {
 
                     int joined = Integer.parseInt(String.valueOf(messageSnapshot.child("joined").getValue()));
-
+                    String name1 = String.valueOf( messageSnapshot.child("author").getValue());
                     Log.i("Joined :",joined+"");
-                    if(joined==0) {
+                    if(joined==0&&(!name1.equals(joiner))) {
                         String name = String.valueOf( messageSnapshot.child("author").getValue());
                         gameId.add(messageSnapshot.getKey());
                         games.add(name);
@@ -85,11 +85,10 @@ public class Main3Activity extends AppCompatActivity {
                 it.putExtra("symbol",2);
                 it.putExtra("gameId",gameId.get(i));
                 startActivity(it);
+                finish();
 
             }
         });
 
     }
-
-
 }

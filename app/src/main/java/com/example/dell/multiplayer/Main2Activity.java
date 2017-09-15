@@ -61,5 +61,9 @@ public class Main2Activity extends AppCompatActivity {
         startActivity(i);
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        System.exit(0);
+    }
 }

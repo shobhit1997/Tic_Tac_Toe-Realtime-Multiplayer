@@ -99,6 +99,10 @@ public class TicTacToe extends AppCompatActivity {
                                             else {
                                                 Toast.makeText(getApplication(), "Winner is :" + (winner == 2 ? player2 : player1), Toast.LENGTH_LONG).show();
                                             }
+                                            Intent i=new Intent(getApplicationContext() ,Main2Activity.class);
+                                            startActivity(i);
+                                            finish();
+
 
                                         }
                                         else
@@ -148,6 +152,9 @@ public class TicTacToe extends AppCompatActivity {
                 else {
                     Toast.makeText(getApplication(), "Winner is :" + (winner == 2 ? player2 : player1), Toast.LENGTH_LONG).show();
                 }
+                Intent i=new Intent(this,Main2Activity.class);
+                startActivity(i);
+                finish();
 
             }
 
