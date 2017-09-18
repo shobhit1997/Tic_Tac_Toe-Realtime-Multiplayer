@@ -131,6 +131,7 @@ public class TicTacToe extends AppCompatActivity {
     }
     public void play(View view)
     {
+        view.setEnabled(false);
         Log.i("turn",turn);
         Log.i("player",player);
         if(turn.equals(player)) {

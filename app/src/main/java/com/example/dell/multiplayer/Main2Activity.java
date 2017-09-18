@@ -49,6 +49,7 @@ public class Main2Activity extends AppCompatActivity {
         activeGames.child(user.getUid()).setValue(result);
         Intent i=new Intent(this,Main4Activity.class);
         i.putExtra("gameId",user.getUid());
+        i.putExtra("name",user.getEmail());
         startActivity(i);
 
 
